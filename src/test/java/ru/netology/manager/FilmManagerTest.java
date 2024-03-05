@@ -15,11 +15,10 @@ public class FilmManagerTest {
     Film film6 = new Film("Человек-невидимка", "ужасы");
     Film film7 = new Film("Тролли. Мировой тур", "мультфильм");
     Film film8 = new Film("Номер один", "комедия");
-    FilmManager manage = new FilmManager();
 
     @Test
     public void notShouldIncludedFilm() {
-
+        FilmManager manage = new FilmManager();
         Film[] expected = {};
         Film[] actual = manage.findAll();
         Assertions.assertArrayEquals(expected, actual);
@@ -27,6 +26,7 @@ public class FilmManagerTest {
 
     @Test
     public void shouldAddFilm() {
+        FilmManager manage = new FilmManager();
         manage.save(film1);
         manage.save(film2);
         manage.save(film3);
@@ -38,6 +38,7 @@ public class FilmManagerTest {
 
     @Test
     public void shouldFindLastIfDefault() {
+        FilmManager manage = new FilmManager();
         manage.save(film1);
         manage.save(film2);
         manage.save(film3);
@@ -54,6 +55,7 @@ public class FilmManagerTest {
 
     @Test
     public void shouldFindLastByCount() {
+        FilmManager manage = new FilmManager(3);
         manage.save(film1);
         manage.save(film2);
         manage.save(film3);
@@ -64,12 +66,13 @@ public class FilmManagerTest {
         manage.save(film8);
 
         Film[] expected = {film8, film7, film6};
-        Film[] actual = manage.findLast(3);
+        Film[] actual = manage.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldFindIfUnderDefault() {
+        FilmManager manage = new FilmManager();
         manage.save(film1);
         manage.save(film2);
         manage.save(film3);
@@ -81,12 +84,13 @@ public class FilmManagerTest {
 
     @Test
     public void shouldFindIfOverMax() {
+        FilmManager manage = new FilmManager(5);
         manage.save(film1);
         manage.save(film2);
         manage.save(film3);
 
         Film[] expected = {film3, film2, film1};
-        Film[] actual = manage.findLast(5);
+        Film[] actual = manage.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
 }

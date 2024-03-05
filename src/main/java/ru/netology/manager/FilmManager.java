@@ -3,8 +3,15 @@ package ru.netology.manager;
 import ru.netology.object.Film;
 
 public class FilmManager {
-
+    private int limit = 5;
     private Film[] films = new Film[0];
+
+    public FilmManager() {
+    }
+
+    public FilmManager(int limit) {
+        this.limit = limit;
+    }
 
     public void save(Film newFilm) {
         Film[] tmp = new Film[films.length + 1];
@@ -20,11 +27,7 @@ public class FilmManager {
     }
 
     public Film[] findLast() {
-        return findParametrise(lengthArr(5));
-    }
-
-    public Film[] findLast(int count) {
-        return findParametrise(lengthArr(count));
+        return findParametriseArr(lengthArr(limit));
     }
 
     private int lengthArr(int wishLength) {
@@ -34,10 +37,10 @@ public class FilmManager {
         return wishLength;
     }
 
-    private Film[] findParametrise(int count) {
-        Film[] lastFilms = new Film[count];
+    private Film[] findParametriseArr(int limit) {
+        Film[] lastFilms = new Film[limit];
         int index = films.length - 1;
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < limit; i++) {
             lastFilms[i] = films[index];
             index--;
         }
