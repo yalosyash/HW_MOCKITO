@@ -18,6 +18,14 @@ public class FilmManagerTest {
     FilmManager manage = new FilmManager();
 
     @Test
+    public void notShouldIncludedFilm() {
+
+        Film[] expected = {};
+        Film[] actual = manage.findAll();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void shouldAddFilm() {
         manage.save(film1);
         manage.save(film2);
